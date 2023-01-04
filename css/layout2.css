@@ -1,0 +1,5 @@
+#right {width:250px;height:270px;padding-top:32px;background-color:#88f;  }
+#right dl dt{float:left;margin:0px 5px;width:90px;padding:2px 0px; }
+#right dl dt img{border:2px solid #f99;width:60px;height:47px;vertical-align: middle;  }
+#right dl dd a{font:bold 12px/47px 宋体;color:#000;text-decoration:none; } 
+#right dl dd a:hover{color:#99f;}
