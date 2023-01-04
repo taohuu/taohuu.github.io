@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta http-equiv="content-type" content="text/html;
+   charset=gb2312"/>
+   <meta name="keywords" content="poem"/>
+   <title>poem</title>
+  
+  </head>
+
+  <body>
+  	  <form style="width: 100%;text-align: center;">
+  	  <p>搜索：<input type="search" name="sousuo" /></p>
+      <input type="submit" value="go" />
+      </form>
+  	  <article style="margin:1px;padding:20px 20px;  ">
+      <header>
+      	<h1 style="text-align:center; ">柏舟</h1>
+      </header>
+
+      <section>
+      	<p style="text-align:center; ">泛彼柏舟，亦泛其流。<br/>
+      	   耿耿不寐，如有隐忧。<br/>
+      	   微我无酒，以敖以游。<br/>
+      	   我心匪鉴，不可以茹。<br/>
+      	   亦有兄弟，不可以据。<br/>
+      	   薄言往愬，逢彼之怒。<br/>
+      	   我心匪石，不可转也。<br/>
+      	   我心匪席，不可卷也。<br/>
+      	   威仪棣棣，不可选也。<br/>
+      	   忧心悄悄，愠于群小。<br/>
+      	   觏闵既多，受侮不少。<br/>
+      	   静言思之，寤辟有摽。<br/>
+      	   日居月诸，胡迭而微？<br/>
+      	   心之忧矣，如匪澣衣。<br/>
+      	   静言思之，不能奋飞。<br/>
+      	</p>
+      </section>
+      </article>
+
+      <form action="#" method="post">
+      <p>邮箱：<input type="email" name="email"/></p>
+      <p>网站：<input type="url" name="usewrurl"/></p>
+      <p>数字：<input type="number" name="num" min="0" max="100" step="2"/></p>
+      <p>输入数字：<input type="range" id="range1" min="0" max="100" step="2"/></p>
+       <input type="submit" value="登陆" onclick="myfunction()" />
+       
+     </form>
+
+     <script type="text/javascript">
+     	function myfunction(){
+     		var x = document.getElementById("range1").value;
+     		alert(x);
+     	}
+
+
+     </script>
+
+
+
+
+      <nav style="text-align:center; position:absolute; bottom: 20px; width:100%; ">
+      <a href="poem.html">首页</a>|
+      <a href="taohu.html">taohu</a>|
+      <a href="xu.html">xu</a>
+      </nav>
+
+      <form action="#" method="post">
+       <label for="male">男 </label> 
+      	<input type="radio" name="gender" id="male" />
+      <label for="female">女 </label> 
+      <input type="radio" name="gender" id="female" />
+       <input type="submit"/>
+       
+     </form>
+  
+  </body>
+  </html>
