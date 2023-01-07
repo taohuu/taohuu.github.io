@@ -1,0 +1,75 @@
+#num_a,#num_b,#num_c {width:20px; }
+
+#bton,#btn {width: 80px;
+      margin :0px ; 
+      background-color:#43b244;
+      border: 1px solid black; 
+      color:white  ;
+      border-radius:5px; }
+#bton:hover,#btn:hover{width: 100px;
+           height:30px; }
+#bton:active,#btn:active{width: 100px;          
+            background-color:#add5a2;
+            color:black  ;}
+
+#result {display: block;
+         border:1px solid black;
+         height: 20px;
+         margin:10px 40px 0px 40px;
+          }
+.jisuan{text-align:center; 
+	    border: 3px solid #45b787;
+	    border-radius: 10px;
+	    height:180px;
+	    width: 240px;
+        background-color:white;
+        margin: 100px auto 0px;
+        }
+
+ div.jisuan p{ margin:10px auto 20px;  }
+
+ #time {text-align:center;
+	    height:30px;
+	    width: 350px;
+        margin: 0px auto;
+        position:relative;
+        }
+#time_ctn 
+       {text-align:center;
+	    height:30px;
+	    width: 350px;
+        margin: 20px auto;
+        padding: 0px;
+        overflow: hidden;
+        }
+
+#news { margin:60px auto;
+        padding:0px 0px;
+        width:300px; 
+        height: 30px;
+        position: relative;
+        overflow: hidden;
+        
+
+
+          }
+
+#lis1 {margin: 0px auto 0px auto;
+         padding:0px 0px;
+         width: 200px;
+         position: relative;
+         
+
+        }
+
+#lis1 li{margin:0px 0px 0px 0px;
+	        padding:0px 0px; 
+	        height:30px; 
+             }
+
+#lis1 li a{margin:0px 0px 0px 0px;
+	        padding:0px; 
+	        height:20px; 
+	        font-size: 10px;
+             }
+
