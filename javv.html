@@ -6,16 +6,98 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/jaw.css" rel="stylesheet" type="text/css" />
 	<script src="jsp/jaw.js " type="text/javascript"></script>
+    <script src="jsp/jquery-3.6.3.min.js"></script>
 	<title>Document</title>
+	<link rel="shortcut icon" href="images/favicon.ico"/>
+
+          <script>
+          	$(function(){
+          		$(".num").click( function(){var content=$("#screen").val() ;
+          			                          if (content!="") { 
+          			                          if(content=="0")
+          			                          $("#screen").val($(this).val());
+          			                          else 
+          		                              $("#screen").val(content+$(this).val());
+          		                               }
+          		                      
+
+          		                            }
+          		                )
+
+
+                $(".opt").click(function(){var content=$("#screen").val() ;
+                	                       if(content!="") 
+                	                       $("#screen").val(content+$(this).val());
+                	                      
+
+                                           }
+                               
+                                )
+
+                $("#calculate").click(function(){
+                                     var content=$("#screen").val().replaceAll("x","*");
+                	                            
+                	                              if(content !="")
+                	                              $("#screen").val(parseFloat(eval(content).toFixed(5)));
+
+                                                 
+
+                                                 }
+
+
+                                     )
+                $("#off").click(function(){  $("#screen").val("");
+                	                        $("#screen").css("background-color","black")
+
+
+                                           }
+                                )
+
+                 $("#on").click(function(){  $("#screen").val("0");
+
+                                         $("#screen").css("background-color","white")
+
+                                           }
+                                )
+
+          	             }
+          	  )
+
+          </script>
 	
 </head>
 
-<body  onload="init();move();mv_time();">
+<body  onload="init();move();mv_time();"  >
 
-	<div id="time_ctn"><div id="time">  </div></div>
+<div id="time_ctn"><div id="time">  </div></div>
 
 
-	<div class="jisuan">
+<div class="con">
+     
+    <div id="cal">
+<input type="text"  value="0"  readonly="readonly" id="screen"/>
+<input type="button" value="7" class="num" />
+<input type="button" value="8" class="num" />
+<input type="button" value="9" class="num" />
+<input type="button" value="/" class="opt" />
+<input type="button" value="0FF" id="off" />
+<input type="button" value="4" class="num" />
+<input type="button" value="5" class="num" />
+<input type="button" value="6" class="num" />
+<input type="button" value="x" class="opt" />
+<input type="button" value="0N"   id="on" />
+<input type="button" value="1" class="num" />
+<input type="button" value="2" class="num" />
+<input type="button" value="3" class="num" />
+<input type="button" value="-" class="opt" />
+<input type="button" value="." class="opt" />
+<input type="button" value="0" class="num" />
+<input type="button" value="=" id="calculate" />
+<input type="button" value="+" class="opt" />
+    </div>
+
+ 
+	<div  class="jisuan">
 		<form>
 		<p>请输入方程</p>
 		<input  id="num_a" /> x<sup>2</sup>+<input id="num_b" />x+<input id="num_c"/>=0 <br/>
@@ -25,7 +107,13 @@
 	    </form>
     </div>
 
-    <div id="news">
+
+</div>
+
+
+
+
+<div id="news">
     	<ul id="lis1">
     		<li><a href="">你好</a></li>
     		<li><a href="">我是</a></li>
@@ -35,7 +123,7 @@
     		<li><a href="">你好</a></li>
     	</ul>
 
-    <div>
+<div>
 
 
    

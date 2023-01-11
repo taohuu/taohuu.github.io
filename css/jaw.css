@@ -1,46 +1,109 @@
-#num_a,#num_b,#num_c {width:20px; }
+
+.con{margin: 30px auto;
+     padding: 0px;
+     height:350px;
+     width: 1000px;
+    }
+
+#cal{ border: 3px solid black;
+      border-radius: 10px;
+      padding: 0px;
+      height:180px;
+      width: 240px;
+      float: left;
+      margin: 90px 100px 0px 160px;
+      background-color: #bbb5ac;
+      display: table;   
+
+     }
+
+#screen{ width: 220px;
+         height:40px;
+         margin: 5px 5px;
+         border-radius:10px;
+         border: 2px solid #000;
+         text-align: right;
+         font:bold 30px/40px 黑体;
+         }
+
+.num,.opt,#calculate{height:30px;
+                                 width: 38px;
+                                 margin: 2px 5px ;
+                                 border-radius:10px ; 
+
+                                  }
+
+
+.num:active,.opt:active,#calculate:active{ background-color: #f7da94; }
+
+#off{ height:62px;
+      width: 38px;
+      margin: 2px 5px ;
+      float: right;
+      background-color: #867e76;
+       }
+
+#off:active{background-color: #cfccc9;}
+
+#on { height:62px;
+      width: 38px;
+      margin: 2px 5px ;
+      float: right;
+      background-color: #f28e16;
+
+       }
+#on:active{background-color: #cfccc9;}
+
+
+#num_a,#num_b,#num_c {width:20px;
+                      border:2px solid black;  }
 
 #bton,#btn {width: 80px;
       margin :0px ; 
-      background-color:#43b244;
-      border: 1px solid black; 
+      background-color: #737c7b;
+      border: 2px solid black; 
       color:white  ;
       border-radius:5px; }
 #bton:hover,#btn:hover{width: 100px;
            height:30px; }
 #bton:active,#btn:active{width: 100px;          
-            background-color:#add5a2;
+            background-color:#fcb70a;
             color:black  ;}
 
 #result {display: block;
-         border:1px solid black;
+         border:2px solid black;
          height: 20px;
          margin:10px 40px 0px 40px;
+         background-color:white;
           }
 .jisuan{text-align:center; 
-	    border: 3px solid #45b787;
+	    border: 3px solid #000;
 	    border-radius: 10px;
 	    height:180px;
 	    width: 240px;
         background-color:white;
-        margin: 100px auto 0px;
+        margin: 90px auto 0px 100px;
+        float: left;
+
         }
 
  div.jisuan p{ margin:10px auto 20px;  }
 
  #time {text-align:center;
-	    height:30px;
-	    width: 350px;
-        margin: 0px auto;
+	     height:30px;
+	     width: 350px;
+        margin: 5px auto;
         position:relative;
+
         }
 #time_ctn 
        {text-align:center;
-	    height:30px;
-	    width: 350px;
+	      height:30px;
+	      width: 350px;
         margin: 20px auto;
         padding: 0px;
         overflow: hidden;
+       
         }
 
 #news { margin:60px auto;
@@ -49,7 +112,7 @@
         height: 30px;
         position: relative;
         overflow: hidden;
-        
+       
 
 
           }
