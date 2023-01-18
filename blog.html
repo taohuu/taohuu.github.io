@@ -7,11 +7,60 @@
 	<link rel="stylesheet" type="text/css" href="css/blog.css"/>
 	<script type="text/javascript" src="jsp/blog.js"></script>
 	<script src="jsp/jquery-3.6.3.min.js"></script>
+	<script> 
+		$(function(){  $("#nav>ul>li").hover(function(){$(this).find("ul").slideDown(); },
+			                                 function(){$(this).find("ul").slideUp(); }
+		                                    )
+
+
+
+
+
+
+		})
+
+
+	</script>
 	
 </head>
 <body>
-	<div id="nav"> </div>
-	<div id="con"> </div>
+	<div id="index_pic"></div>
+	<div id="nav">
+	<ul>
+		<li>
+			<a href="" class="menu">首页</a>
+			<ul>
+				<li><a href="">综艺</a></li>
+				<li><a href="">小品</a></li>
+				<li><a href="">相声</a></li>
+				<li><a href="">戏剧</a></li>
+				<li><a href="">音乐</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="" class="menu">电视剧</a>
+			<ul>
+				<li><a href="">生活</a></li>
+				<li><a href="">喜剧</a></li>
+				<li><a href="">冒险</a></li>
+				<li><a href="">战争</a></li>
+				<li><a href="">科幻</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="" class="menu">电影</a>
+			<ul>
+				<li><a href="">艺术</a></li>
+				<li><a href="">获奖</a></li>
+				<li><a href="">喜剧</a></li>
+				<li><a href="">爱情</a></li>
+				<li><a href="">悲剧</a></li>
+			</ul>
+		</li>
+	</ul>
+
+	 </div>
+	<div id="con"><video controls="controls" src="https://pan.quark.cn/list#/video/c191ade8e7ec4aedab041ddadf37586d"></video> </div>
 	<div id="footer"></div>
 	
 </body>
