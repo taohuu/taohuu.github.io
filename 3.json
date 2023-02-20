@@ -1,36 +1,36 @@
 {
     "urls": [
         {
-            "url": "http://henryxu.netlify.app/meow.txt",
-            "name": "太阳线路"
+            "url": "http://111.67.196.181/mtv/meow.txt",
+            "name": "一"
         },
         {
             "url": "http://xxooo.eu.org/xx/o",
-            "name": "饭太硬线路"
+            "name": "二"
         },
         {
             "url": "http://byyds.top/w.txt",
-            "name": "BYYDS线路"
+            "name": "三"
         },
         {
             "url": "https://agit.ai/66666/mao/raw/branch/master/00/000.m3u8",
-            "name": "🐹分享者线路"
+            "name": "四"
         },
         {
             "url": "https://ju.binghe.ga/4.txt",
-            "name": "冰河线路"
+            "name": "五"
         },
         {
             "url": "https://agit.ai/n/b/raw/branch/a/b/c.json",
-            "name": "agit/abc线路"
+            "name": "六"
         },
         {
             "url": "https://agit.ai/mmmgit/tvbox/raw/branch/main/zzz1.json",
-            "name": "zzz1线路"
+            "name": "七"
         },
                 {
             "url": "https://download.kstore.space/download/2883/m3u8/dsj/guochan/mp1/1.m3u8",
-            "name": "蚂蚁论坛线路"
+            "name": "八"
         }
     ]
 }
