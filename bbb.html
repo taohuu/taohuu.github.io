@@ -1,0 +1,50 @@
+
+<!DOCTYPE html> 
+ <html> 
+ <head> 
+ <style> /* 定义网页的样式 */
+  body { font-family: Arial; margin: 0; } 
+  h1 { text-align: center; color: white;
+        background-color: #333333; padding: 20px; } 
+
+  .container { max-width: 800px; margin: 0 auto; } 
+  .post { border-bottom: 1px solid #cccccc; padding: 10px; } 
+  .post-title { font-size: 24px; color: #333333; }
+  .post-date { font-size: 14px; color: #999999; } 
+  .post-content { font-size: 18px; color: #666666; } 
+  </style> 
+  </head> 
+
+  <body> 
+
+  <h1>我的个人博客</h1> 
+
+  <div class="container"> <!-- 使用javascript动态生成博客内容 -->
+   <script> // 定义一个数组，存储博客的标题，日期和内容 
+   var posts = [ { title: "我的第一篇博客", date: "2023-03-10", content: "这是我的第一篇博客，我想在这里分享我的学习和生活经历。" }, { title: "如何使用必应搜索引擎", date: "2023-03-11", content: "必应搜索引擎是一个强大的工具，可以帮助我们找到我们想要的信息。它有很多功能和技巧，比如：\n" + "- 可以使用双引号来搜索精确匹配的短语，比如\"五子棋小程序\"\n" + "- 可以使用减号来排除不想要的结果，比如python -snake\n" + "- 可以使用星号来代替任意字符，比如how to * a cake\n" + "- 可以使用site来限制搜索范围，比如site:wikipedia.org python\n" + "- 可以使用inurl来搜索包含特定关键词的网址，比如inurl:baidu python\n" + "- 还有很多其他功能和技巧，可以参考必应搜索引擎的帮助页面" }, { title: "今天我学习了一些html,javascript,css的知识", date: "2023-03-12", content: "今天我学习了一些html,javascript,css的知识，\n用它们制作了一个简单的个人博客网页。我觉得这些技术很有趣，可以让我自由地设计和展示我的内容。\n我还想学习更多关于网页开发的知识，比如bootstrap,jquery,node.js等等。" },{ title: "我的个人爱好", date: "2023-03-13", content: "我的个人爱好有很多，比如阅读，写作，编程，旅游等等。我喜欢阅读各种类型的书籍，从小说到科学，从历史到哲学。\n 我也喜欢写作，把我的想法和感受记录下来。编程是我的最近的兴趣，我觉得它可以让我创造很多有用和有趣的东西。\n旅游是我的梦想，我想去看看世界上不同的地方和文化。" } ]; 
+
+   // 定义一个函数，根据博客数组生成网页内容 
+   function generate_posts() { // 获取网页中的容器元素 
+   var container = document.getElementsByClassName( "container" )[0];
+    // 遍历博客数组 
+    for (var i = 0; i < posts.length; i++) { // 获取当前博客对象
+                                var post = posts[i]; 
+                                // 创建一个div元素，表示一篇博客 
+                                var post_div = document.createElement("div"); post_div.className = "post"; 
+                                // 创建一个h2元素，表示博客标题 
+                                var post_title = document.createElement("h2"); post_title.className = "post-title"; post_title.innerText = post.title; 
+                                // 创建一个p元素，表示博客日期 
+                                var post_date = document.createElement("p"); post_date.className = "post-date"; post_date.innerText = post.date; 
+                                // 创建一个pre元素，表示博客内容 
+                                var post_content = document.createElement("pre"); post_content.className = "post-content"; post_content.innerText = post.content;
+                                 // 将标题，日期和内容添加到博客div中 
+                             post_div.appendChild(post_title);
+                              post_div.appendChild(post_date); 
+
+                          post_div.appendChild(post_content); 
+                      // 将博客div添加到容器元素中
+                       container.appendChild(post_div); } } // 调用函数，生成博客内容
+                        generate_posts(); </script> 
+                    </div> 
+                </body> 
+           </html>

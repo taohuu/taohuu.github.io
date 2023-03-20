@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的博客</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-right: 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #f1c40f;
+        }
+        main {
+            padding: 20px;
+        }
+        article {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 36px;
+            margin-top: 0;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我的博客</h1>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">文章</a></li>
+                <li><a href="#">关于我</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>文章标题</h2>
+            <p>这里写正文内容</p>
+            <p>这里还可以写其他内容</p>
+        </article>
+        <article>
+            <h2>文章标题</h2>
+            <p>这里写正文内容</p>
+            <p>这里还可以写其他内容</p>
+        </article>
+        <article>
+            <h2>文章标题</h2>
+            <p>这里写正文内容</p>
+            <p>这里还可以写其他内容</p>
+        </article>
+    </main>
+    <footer>
+        <p>版权所有 © 2023 我的博客</p>
+    </footer>
+    <script>
+        var nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                nav.classList.add('fixed');
+            } else {
+                nav.classList.remove('fixed');
+            }
+        });
+    </script>
+</body>
+</html>

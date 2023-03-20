@@ -1,0 +1,51 @@
+
+<!DOCTYPE html> 
+<html lang="zh-CN"> 
+ <head>
+   <meta charset="UTF-8"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 引入w3.css样式表 -->
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+   <!-- 定义自己的css样式 --> 
+
+   <style> /* 设置背景颜色为浅灰色 */ 
+   body { background-color: lightgray; } /* 设置标题字体为黑体，居中对齐，颜色为深蓝色 */ 
+   .header { font-family: "SimHei"; text-align: center; color: darkblue; } /* 设置文章标题字体为黑体，左对齐，颜色为黑色 */ 
+   .article-title { font-family: "SimHei"; text-align: left; color: black; } /* 设置文章内容字体为宋体，两端对齐，颜色为黑色 */ 
+   .article-content { font-family: "SimSun"; text-align: justify; color: black; } /* 设置侧边栏标题字体为黑体，左对齐，颜色为白色 */ 
+   .sidebar-title { font-family: "SimHei"; text-align: left; color: white; } /* 设置侧边栏内容字体为宋体，左对齐，颜色为白色 */ 
+   .sidebar-content { font-family: "SimSun"; text-align: left; color: white; } /* 创建两个不等宽的列，并使其浮动在一起 */ /* 左列 */ 
+   .leftcolumn { float: left; width: 75%; } /* 右列 */
+    .rightcolumn { float:left; width :25%; background-color:#aaa; padding-left :20px; } 
+    </style>
+
+     </head> 
+
+     <body> <!-- 使用w3-container类创建一个容器 --> 
+      <div class="w3-container"> <!-- 在容器中添加一个标题 --> 
+        <h1 class="header">欢迎来到我的个人博客</h1> <!-- 创建两个不等宽的列，并使其浮动在一起 --> 
+        <div class="row"> <!-- 左列 --> 
+        <div class="leftcolumn"> <!-- 在左列中添加一篇文章 --> 
+        <div class="card"> <!-- 在文章中添加一个标题 --> 
+        <h2 class="article-title">我的第一篇博客</h2> <!-- 在文章中添加一个图片 --> 
+        <img src ="https://www.w3schools.com/howto/img_nature.jpg" alt ="Nature" style ="width :100%"> <!-- 在文章中添加一段内容 --> 
+        <p class="article-content">你好，我叫李华，是一名软件工程师。这是我用html、js和css编写的第一个个人博客网页。在这里我会分享我的编程经验、阅读心得和旅游故事。希望你能喜欢。</p> 
+      </div> 
+    </div> <!-- 右列 --> 
+
+    <div class = "rightcolumn"> <!-- 在右列中添加一个侧边栏 -->
+   <!-- 在侧边栏中添加一个标题 -->
+     <h2 class="sidebar-title">关于我</h2>
+   
+   <!-- 在侧边栏中添加一张图片 -->
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="头像" width="100" height="100">
+   
+   <!-- 在侧边栏中添加一段内容 -->
+   <p class="sidebar-content">你好，我叫李华，是一名软件工程师。这是我的个人博客网页。</p>
+   
+   </div>
+   
+   </div>
+   
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8">
+ <title>调用腾讯视频播放器APi</title>
+ <script src="http://qzs.qq.com/tencentvideo_v1/js/tvp/tvp.player.js" charset="utf-8"></script>
+ <script src="jsp/jquery-3.6.3.min.js"></script>
+
+</head>
+
+<body  >
+	<div id="DOMid" > </div>
+	<script>
+    var video = new tvp.VideoInfo();  //初始化视频对象
+    video.setVid("w0013uq3iow");                //向视频对象传入视频vid ，这个是点播的时候使用
+    //video.setChannelId(cnlid);      //向视频对象传入直播频道cnlid ，这个是直播的时候使用
+
+    /*点播跟直播的区别主要是：
+        点播是通过video.setVid(vid); 
+        而直播是通过video.setChannelId(cnlid); 设置直播id
+        点播需要player.addParam('type','2');或者省略，因为默认播放器为点播状态;
+        直播必须通过player.addParam('type','1');设置播放器为直播状态，。
+    */
+    
+    var player = new tvp.Player(750, 450);  //初始化播放器对象并设置宽、高
+    player.setCurVideo(video);                   //设置播放器初始化时加载的视频
+    player.addParam('type','2');                 //设置播放器为直播状态，1表示直播，2表示点播，默认为2
+    player.addParam("wmode","transparent");      //设置透明化，不设置时，视频为最高级，总是处于页面的最上面，此时设置z-index无效
+    player.addParam("autoplay",'0');           //是否自动播放
+   // player.addParam('pic','');                   //播放器默认图，当autoplay=0时有效；不传入则使用视频截图                                  
+    player.addParam("showend",0)                 //结束时是否有广告
+    player.write("DOMid");                         //输出播放器
+    //events
+    player.onplaying = function(vid) {
+        console.log(vid);
+    }
+    player.onended = function(vid) {
+        console.log(vid);
+    }
+    
+</script>
+
+
+
+
+
+</body>
+
+</html>
