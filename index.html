@@ -1,103 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>taohu的站</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav li {
-            margin-right: 20px;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.2s;
-        }
-        nav a:hover {
-            color: #f1c40f;
-        }
-        main {
-            padding: 20px;
-        }
-        article {
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        h2 {
-            font-size: 36px;
-            margin-top: 0;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>taohu的站</title>
+  <link rel="stylesheet" media="screen" href="css/styles.css">
+  <link rel="stylesheet" media="only screen and (max-width: 600px)" href="css/styles-mobile.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>taohu的站</h1>
-        <nav>
-            <ul>
-                <li><a href="#">首页</a></li>
-                <li><a href="#">文章</a></li>
-                <li><a href="#">关于我</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <article>
-            <h2>文章标题</h2>
-            <p>这里写正文内容</p>
-            <p>这里还可以写其他内容</p>
-        </article>
-        <article>
-            <h2>文章标题</h2>
-            <p>这里写正文内容</p>
-            <p>这里还可以写其他内容</p>
-        </article>
-        <article>
-            <h2>文章标题</h2>
-            <p>这里写正文内容</p>
-            <p>这里还可以写其他内容</p>
-        </article>
-    </main>
-    <footer>
-        <p>版权所有 © 2023 我的博客</p>
-    </footer>
-    <script>
-        var nav = document.querySelector('nav');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                nav.classList.add('fixed');
-            } else {
-                nav.classList.remove('fixed');
-            }
-        });
-    </script>
+  <!-- 导航栏 -->
+  <nav>
+    <a href="#" class="logo">&nbsp;&nbsp;&nbsp;taohu的站</a>
+    <ul class="nav-links">
+      <li><a href="index.html"> <i class="fas fa-home"></i> &nbsp;首页</a></li>
+      <li><a href="#"> <i class="fas fa-info-circle"></i> &nbsp;留言</a></li>
+      <li><a href="#"> <i class="fas fa-link"></i>&nbsp;友链</a></li>
+    </ul>
+  </nav>
+
+  <!-- 个人信息栏 -->
+  <section class="personal-info">
+    <h2>taohu</h2>
+    <img src="images/avatar.jpg" alt="个人头像">
+    <p>一个普通的干饭人</p>
+    <a href="#"><i class="fab fa-weixin"></i></a>
+    <a href="#"><i class="fas fa-envelope"></i></a>
+     <a href="#"><i class="fab fa-qq"></i></a>
+     <a href="#"><i class="fab fa-github"></i></a>
+     
+  </section>
+
+  <!-- 最新文章栏 -->
+  <section class="latest-articles">
+    <h2>最新文章</h2>
+    <hr/>
+    <div class="article-scroll">
+     
+      <!-- 动态生成的最新文章 -->
+    </div>
+  </section>
+
+  <!-- 文章栏 -->
+  <section class="articles">
+    <h2>所有文章</h2>
+    <ul class="article-list">
+      <!-- 动态生成的文章列表 -->
+    </ul>
+  </section>
+
+  <!-- 页尾 -->
+  <footer>
+    <p>版权所有 © 2023 taohu的站</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

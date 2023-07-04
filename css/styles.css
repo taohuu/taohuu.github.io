@@ -1,0 +1,146 @@
+/* 共享的样式 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  border-bottom: 0px solid #000; /* 导航栏下边框样式 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+}
+
+nav .logo {
+  font-size: 1.5rem;
+  color: #000;
+  text-decoration: none;
+}
+
+nav .nav-links {
+  list-style: none;
+  display: flex;
+}
+
+nav .nav-links li {
+  margin-right: 20px;
+}
+
+nav .nav-links li a {
+  color: #000;
+  text-decoration: none;
+}
+
+.personal-info {
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+ 
+}
+
+.personal-info img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.latest-articles {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  padding: 0px 20px 0px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.article-scroll {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.article-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.article-scroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+.article-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.articles {
+  padding: 0px 30px 10px 20px;
+  margin-left: 30px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+.article-list {
+  list-style: none;
+}
+
+.article-list li {
+  margin-bottom: 10px;
+}
+
+footer {
+  background-color: #fff;
+  color: #000;
+  padding: 0.1px;
+  text-align: center;
+}
+
+/* 电脑端样式 */
+@media screen and (min-width: 601px) {
+  .personal-info {
+    float: right;
+    width: 25%;
+    height: 70vh;
+  }
+
+  .latest-articles {
+    float: left;
+    width: 65%;
+    height: 70vh;
+  }
+
+  .articles {
+    clear: both;
+  }
+}
+
+/* 手机端样式 */
+@media only screen and (max-width: 600px) {
+  .personal-info {
+    width: 90%;
+    margin: 20px 20px 20px auto;
+      padding-bottom: 20px;
+  }
+
+  .latest-articles {
+    width: 90%;
+    margin:20px auto 20px 20px;
+    padding-right: 0px;
+  }
+
+  .articles {
+    width: 90%;
+    margin:20px auto 20px 20px;
+    padding-right: 0px;
+  }
+}

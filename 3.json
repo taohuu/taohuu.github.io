@@ -1,0 +1,12 @@
+{
+    "urls": [
+        {
+            "url": "http://pandown.pro/tvbox/tvbox.json",
+            "name": "爱奇艺"
+         },
+        {
+            "url": "https://henryxu.netlify.app/meow.json",
+            "name": "腾讯视频"
+        }
+    ]
+}
