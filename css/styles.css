@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family:Arial,楷体,sans-serif;
 }
 
 nav {
@@ -43,6 +43,8 @@ nav .nav-links li a {
   border: 1px solid #ccc;
   border-radius: 10px;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+   background-color:#fff;
+   color: #000;
  
 }
 
@@ -52,6 +54,15 @@ nav .nav-links li a {
   border-radius: 50%;
 }
 
+.personal-info a{ 
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+   }
+.personal-info a:hover{ 
+  color: #20a162;
+   }
+
 .latest-articles {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -60,6 +71,7 @@ nav .nav-links li a {
   border: 1px solid #ccc;
   border-radius: 10px;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+   background-color:#fff;
 }
 
 .article-scroll {
@@ -132,15 +144,20 @@ footer {
       padding-bottom: 20px;
   }
 
+  .personal-info a{
+  font-size: 20px;
+
+   }
+
   .latest-articles {
-    width: 90%;
-    margin:20px auto 20px 20px;
+    width: 87%;
+    margin:20px auto 20px 5%;
     padding-right: 0px;
   }
 
   .articles {
-    width: 90%;
-    margin:20px auto 20px 20px;
+    width: 87%;
+    margin:20px auto 20px 5%;
     padding-right: 0px;
   }
 }
