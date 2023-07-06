@@ -1,13 +1,13 @@
 body {
        font-family: 宋体,楷体,微软雅黑,Arial, sans-serif;
        margin: 0;
-       padding:0px 30px;}
+       padding:0px 20px;}
 
 .container{width: 60%;
            height: 100%;
            margin-left: auto;
            margin-right: auto; 
-           border: 2px solid #000;
+           border: 0px solid #000;
            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
            border-radius: 10px;
            padding:20px;
@@ -33,6 +33,6 @@ blockquote p {font-style: italic;
                  
  @media only screen and (max-width: 600px)
                     { .container {font-size: 18px;
-                                  width: 90%}
+                                  width: 100%}
                       .container img{max-width:100%;} 
                     }
