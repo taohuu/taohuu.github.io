@@ -31,7 +31,7 @@ blockquote p {font-style: italic;
               line-height: 1.5;
              }
                  
- @media only screen and (max-width: 600px)
+ @media only screen and (max-width:600px)
                     { .container {font-size: 18px;
                                   width: 100%}
                       .container img{max-width:100%;} 
