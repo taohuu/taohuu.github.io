@@ -1,9 +1,42 @@
-<mxfile host="app.diagrams.net" modified="2024-05-08T03:00:58.865Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0" version="24.3.1" etag="ZATkqJy5D-NcXH2171Lz" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-09T02:46:43.769Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0" etag="TWsJTcXgWRPayWmLnXa6" version="24.3.1" type="github">
   <diagram name="第 1 页" id="mhaKRS-JUvFZOyBc1QN5">
-    <mxGraphModel>
+    <mxGraphModel dx="568" dy="359" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hHVqGgW4xkvpxAIhSHqZ-12" target="hHVqGgW4xkvpxAIhSHqZ-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-12" value="&lt;font face=&quot;Times New Roman&quot;&gt;AD&lt;/font&gt;&lt;font face=&quot;宋体&quot;&gt;前端调理电路&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="410" width="100" height="41.68" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hHVqGgW4xkvpxAIhSHqZ-13" target="hHVqGgW4xkvpxAIhSHqZ-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-13" value="&lt;font face=&quot;宋体&quot;&gt;高速&lt;/font&gt;&lt;font face=&quot;Times New Roman&quot;&gt;ADC&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="340" width="100" height="41.68" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hHVqGgW4xkvpxAIhSHqZ-14" target="hHVqGgW4xkvpxAIhSHqZ-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-14" value="&lt;font face=&quot;Times New Roman&quot;&gt;FPGA&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="340" width="100" height="41.68" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hHVqGgW4xkvpxAIhSHqZ-15" target="hHVqGgW4xkvpxAIhSHqZ-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-15" value="&lt;font face=&quot;Times New Roman&quot;&gt;FT232H&lt;/font&gt;&lt;font face=&quot;宋体&quot;&gt;电路&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="340" width="100" height="41.68" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-16" value="&lt;font face=&quot;Times New Roman&quot;&gt;PC&lt;/font&gt;&lt;font face=&quot;宋体&quot;&gt;上位机&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="410" width="100" height="41.68" as="geometry" />
+        </mxCell>
+        <mxCell id="hHVqGgW4xkvpxAIhSHqZ-22" value="待采样信号" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=宋体;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3D%25E5%25AE%258B%25E4%25BD%2593;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;" edge="1" parent="1" target="hHVqGgW4xkvpxAIhSHqZ-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="80" y="431" as="sourcePoint" />
+            <mxPoint x="130" y="405.84" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
