@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开源项目维护者的日常与思考 — My Blog</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-theme="light">
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="../../" class="logo">My Blog</a>
+      <nav class="nav">
+        <a href="../../" class="nav-link">首页</a>
+        <a href="#" class="nav-link">关于</a>
+        <a href="#" class="nav-link">归档</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="icon icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <a href="../../" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        返回首页
+      </a>
+
+      <article class="article-header">
+        <div class="article-tags">
+          <span class="post-tag">技术</span>
+          <span class="post-tag">开源</span>
+        </div>
+        <h1 class="article-title">开源项目维护者的日常与思考</h1>
+        <div class="article-meta">
+          <span>John Doe</span>
+          <time datetime="2026-03-25">2026年3月25日</time>
+        </div>
+      </article>
+
+      <div class="article-cover cover-9"></div>
+
+      <div class="article-body">
+        <p>两年前我发布了一个开源项目——一个 React 表单库。本来只是为了解决自己的需求，没想到慢慢积累了一千多个 GitHub stars 和一个活跃的社区。</p>
+<p>维护开源项目的经历给了我很多意料之外的收获，也让我对&quot;开源精神&quot;有了更真实的理解。</p>
+<h2>日常是什么样的？</h2>
+<p>一个有活跃用户的开源项目的日常大概是这样：</p>
+<ul>
+<li><strong>早上</strong>：打开 GitHub，看看昨晚有没有新 issue。通常有 2-3 个</li>
+<li><strong>白天</strong>：正常工作（开源不是我的全职工作）</li>
+<li><strong>晚上</strong>：花 1-2 小时处理 issue、review PR、回复讨论</li>
+<li><strong>周末</strong>：花半天到一天写代码、更新文档</li>
+</ul>
+<blockquote>
+<p>开源维护者不是在写代码，就是在讨论代码的路上。</p>
+</blockquote>
+<h2>最让我头疼的四种情况</h2>
+<h3>1. &quot;为什么不支持 X？&quot;</h3>
+<p>有些 issue 是纯粹的需求索取，没有讨论，没有 PR——像是理所当然的功能请求。</p>
+<p>我的处理方式：礼貌地解释项目范围和优先级，邀请对方提交 PR。<strong>大多数人不回复，但偶尔有人真的提交了——这就是开源的魅力。</strong></p>
+<h3>2. 过时的 issue</h3>
+<p>&quot;这个 bug 修复了吗？&quot;——发布于 18 个月前，已经在 v2.0 修复了。</p>
+<p>解决办法：自动化的 issue bot 给过期 issue 打标签。</p>
+<h3>3. 文档不够好</h3>
+<p>这是最合理的批评。写文档是枯燥的工作，但<strong>好的文档比好代码更能留住用户</strong>。</p>
+<p>我后来把文档贡献也计入 Contributors 页面——这极大地改善了文档质量。</p>
+<h3>4. 倦怠</h3>
+<p>连续处理三周 issue 后开始感到疲惫。开源维护的倦怠是真实的，而且很少被讨论。</p>
+<h2>社区运营的几点心得</h2>
+<h3>贡献者阶梯</h3>
+<ul>
+<li><strong>Level 1</strong>：提 issue 的用户</li>
+<li><strong>Level 2</strong>：回复 issue 的活跃用户</li>
+<li><strong>Level 3</strong>：提交小修复的贡献者</li>
+<li><strong>Level 4</strong>：提交大功能的贡献者</li>
+<li><strong>Level 5</strong>：获得 triage 权限的维护者</li>
+</ul>
+<p>给每个层级清晰的晋升路径，让贡献者看到成长空间。</p>
+<h3>善用模板</h3>
+<p>Issue 模板和 PR 模板可以节省大量重复沟通。我的 Bug Report 模板要求：</p>
+<ol>
+<li>重现步骤</li>
+<li>期望行为 vs 实际行为</li>
+<li>环境信息（版本、浏览器等）</li>
+<li>最小重现代码</li>
+</ol>
+<p><strong>缺一条不完整的信息，我就礼貌地指回模板。</strong></p>
+<h3>说&quot;不&quot;的能力</h3>
+<p>这是最难的。不是每个 PR 都要合并，不是每个功能都要支持。说&quot;不&quot;不是不友善，而是保护项目的质量边界。</p>
+<h2>开源给了我什么？</h2>
+<ol>
+<li><strong>代码质量意识</strong>：知道别人会看你的代码，写得更认真</li>
+<li><strong>英语能力</strong>：和全球开发者交流，英文读写大幅进步</li>
+<li><strong>设计决策能力</strong>：每一个 API 接口都要经过多方讨论</li>
+<li><strong>职业机会</strong>：因为这个项目，我收到了几个很好的工作邀请</li>
+</ol>
+<p>最大的收获是：<strong>学会了在公开场合理性讨论技术问题</strong>——这种能力在日常工作中同样有用。</p>
+<h2>如果你想开始</h2>
+<ol>
+<li>解决你自己的一个真实问题（而非凭空创造）</li>
+<li>写好 README——前 30 秒决定用户是否留下</li>
+<li>保持库小——一个库做好一件事</li>
+<li>不要追求 stars——关注真正在使用的人</li>
+</ol>
+<blockquote>
+<p>开源不是免费的劳动，而是一个用代码连接同道中人的方式。</p>
+</blockquote>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-text">&copy; 2026 My Blog. Made with ❤️</p>
+      <div class="footer-social">
+        <a href="https://github.com/yourname" class="social-link">GitHub</a>
+        <a href="https://twitter.com/yourname" class="social-link">Twitter</a>
+        <a href="#" class="social-link">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

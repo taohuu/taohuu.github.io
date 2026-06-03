@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 异步编程的进化史 — My Blog</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-theme="light">
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="../../" class="logo">My Blog</a>
+      <nav class="nav">
+        <a href="../../" class="nav-link">首页</a>
+        <a href="#" class="nav-link">关于</a>
+        <a href="#" class="nav-link">归档</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="icon icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <a href="../../" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        返回首页
+      </a>
+
+      <article class="article-header">
+        <div class="article-tags">
+          <span class="post-tag">技术</span>
+          <span class="post-tag">JavaScript</span>
+        </div>
+        <h1 class="article-title">JavaScript 异步编程的进化史</h1>
+        <div class="article-meta">
+          <span>John Doe</span>
+          <time datetime="2026-05-05">2026年5月5日</time>
+        </div>
+      </article>
+
+      <div class="article-cover cover-4"></div>
+
+      <div class="article-body">
+        <p>JavaScript 的异步编程经历了从&quot;回调地狱&quot;到优雅的 <code>async/await</code> 的漫长进化。理解这段历史有助于我们写出更好的异步代码。</p>
+<h2>第一代：回调函数</h2>
+<p>最早的异步处理方式——在操作完成后调用一个函数。</p>
+<pre><code class="language-javascript">fs.readFile(&#39;/data.json&#39;, (err, data) =&gt; {
+  if (err) {
+    console.error(&#39;读取失败&#39;, err);
+    return;
+  }
+  console.log(JSON.parse(data));
+});
+</code></pre>
+<p>看起来还行——直到你需要串联多个异步操作：</p>
+<pre><code class="language-javascript">// 回调地狱
+fs.readFile(&#39;/user.json&#39;, (err, user) =&gt; {
+  fs.readFile(`/posts/${user.id}.json`, (err, posts) =&gt; {
+    fs.readFile(`/comments/${posts[0].id}.json`, (err, comments) =&gt; {
+      // 已经三层缩进了，再来几层就没法看了
+      console.log(comments);
+    });
+  });
+});
+</code></pre>
+<p>问题很明显：<strong>嵌套深、错误处理繁琐、逻辑难以测试。</strong></p>
+<h2>第二代：Promise</h2>
+<p>Promise 用一个对象包装异步操作，通过 <code>.then()</code> 串联，通过 <code>.catch()</code> 处理错误。</p>
+<pre><code class="language-javascript">fetch(&#39;/api/user&#39;)
+  .then(res =&gt; res.json())
+  .then(user =&gt; fetch(`/api/posts?userId=${user.id}`))
+  .then(res =&gt; res.json())
+  .then(posts =&gt; console.log(posts))
+  .catch(err =&gt; console.error(&#39;请求失败&#39;, err));
+</code></pre>
+<p>Promise 带来了三个重要改进：</p>
+<ol>
+<li><strong>链式调用</strong>：解决嵌套问题</li>
+<li><strong>统一错误处理</strong>：一个 <code>.catch()</code> 捕获链上任意位置的错误</li>
+<li><strong>可组合性</strong>：<code>Promise.all</code>、<code>Promise.race</code> 等组合方法</li>
+</ol>
+<h2>第三代：async/await</h2>
+<p><code>async/await</code> 是 Promise 的语法糖，但极大地提升了代码可读性。</p>
+<pre><code class="language-javascript">async function getUserPosts(userId) {
+  try {
+    const userRes = await fetch(`/api/users/${userId}`);
+    const user = await userRes.json();
+    
+    const postsRes = await fetch(`/api/posts?userId=${user.id}`);
+    const posts = await postsRes.json();
+    
+    return posts;
+  } catch (err) {
+    console.error(&#39;获取失败&#39;, err);
+    return [];
+  }
+}
+</code></pre>
+<p>异步代码看起来像同步代码一样直观。</p>
+<h2>最佳实践</h2>
+<h3>1. 不要在循环中使用 await（除非需要顺序执行）</h3>
+<pre><code class="language-javascript">// 差：串行执行，慢
+for (const id of ids) {
+  const data = await fetchData(id);
+}
+
+// 好：并行执行，快
+const results = await Promise.all(ids.map(id =&gt; fetchData(id)));
+</code></pre>
+<h3>2. 不要混用 then 和 await</h3>
+<p>选择一种风格并保持一致。</p>
+<h3>3. 始终处理错误</h3>
+<pre><code class="language-javascript">// 优雅的错误处理
+const [err, data] = await fetchData().then(
+  data =&gt; [null, data],
+  err =&gt; [err, null]
+);
+</code></pre>
+<h2>未来：Observables 和 Streams？</h2>
+<p>对于多次触发的异步事件（如 WebSocket 消息），Promise 的一次性特性不够用。RxJS 的 Observable 和 Web Streams API 正在填补这个空白。</p>
+<p>但对大多数场景来说，<strong><code>async/await</code> 已经是完美的解决方案。</strong></p>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-text">&copy; 2026 My Blog. Made with ❤️</p>
+      <div class="footer-social">
+        <a href="https://github.com/yourname" class="social-link">GitHub</a>
+        <a href="https://twitter.com/yourname" class="social-link">Twitter</a>
+        <a href="#" class="social-link">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body data-theme="light">
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="./" class="logo">My Blog</a>
+      <nav class="nav">
+        <a href="./" class="nav-link active">首页</a>
+        <a href="#" class="nav-link">关于</a>
+        <a href="#" class="nav-link">归档</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="icon icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="hero">
+        <div class="hero-avatar">JD</div>
+        <h1 class="hero-name">John Doe</h1>
+        <p class="hero-bio">热爱技术与写作的全栈开发者。在这里记录思考、分享知识、探索生活。</p>
+        <div class="hero-social">
+          <a href="https://github.com/yourname" class="social-link" title="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://twitter.com/yourname" class="social-link" title="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="mailto:you@example.com" class="social-link" title="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="filter-bar">
+        <div class="filter-chips" id="filterChips">
+          <button class="chip active" data-tag="全部">全部</button>
+          <button class="chip" data-tag="CSS">CSS</button>
+          <button class="chip" data-tag="JavaScript">JavaScript</button>
+          <button class="chip" data-tag="Rust">Rust</button>
+          <button class="chip" data-tag="开源">开源</button>
+          <button class="chip" data-tag="技术">技术</button>
+          <button class="chip" data-tag="旅行">旅行</button>
+          <button class="chip" data-tag="生活">生活</button>
+          <button class="chip" data-tag="设计">设计</button>
+          <button class="chip" data-tag="读书笔记">读书笔记</button>
+        </div>
+      </section>
+
+      <section class="posts-grid" id="postsGrid">
+        
+        <a href="./posts/css-grid-guide/" class="post-card">
+          <div class="post-card-cover cover-1"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">技术</span>
+              <span class="post-tag">CSS</span>
+            </div>
+            <h2 class="post-card-title">如何用 CSS Grid 构建现代网页布局</h2>
+            <time class="post-card-date" datetime="2026-05-28">2026年5月28日</time>
+            <p class="post-card-excerpt">CSS Grid 已经成为现代网页布局的基石。本文深入探讨 Grid 的核心概念、实战技巧，以及与传统布局方案的对比，帮你彻底掌握这一强大工具。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/design-system/" class="post-card">
+          <div class="post-card-cover cover-2"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">设计</span>
+              <span class="post-tag">技术</span>
+            </div>
+            <h2 class="post-card-title">设计系统从零到一：我的踩坑与收获</h2>
+            <time class="post-card-date" datetime="2026-05-20">2026年5月20日</time>
+            <p class="post-card-excerpt">为团队构建设计系统是一次充满挑战的旅程。这篇文章记录了我在设计令牌、组件库搭建、文档化方面的实践经验与思考。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/lijiang-travel/" class="post-card">
+          <div class="post-card-cover cover-3"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">旅行</span>
+              <span class="post-tag">生活</span>
+            </div>
+            <h2 class="post-card-title">丽江慢行：在古城里找回生活的节奏</h2>
+            <time class="post-card-date" datetime="2026-05-12">2026年5月12日</time>
+            <p class="post-card-excerpt">离开屏幕，走进丽江古城的石板巷陌。一周的慢旅行让我重新审视工作与生活的平衡，也拍下了许多难忘的瞬间。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/javascript-async/" class="post-card">
+          <div class="post-card-cover cover-4"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">技术</span>
+              <span class="post-tag">JavaScript</span>
+            </div>
+            <h2 class="post-card-title">JavaScript 异步编程的进化史</h2>
+            <time class="post-card-date" datetime="2026-05-05">2026年5月5日</time>
+            <p class="post-card-excerpt">从回调地狱到 Promise，再到 async/await——JavaScript 异步编程范式经历了深刻演变。本文梳理这一进化历程，并给出最佳实践建议。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/deep-work/" class="post-card">
+          <div class="post-card-cover cover-5"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">读书笔记</span>
+              <span class="post-tag">生活</span>
+            </div>
+            <h2 class="post-card-title">《深度工作》读书笔记：专注力才是稀缺资源</h2>
+            <time class="post-card-date" datetime="2026-04-26">2026年4月26日</time>
+            <p class="post-card-excerpt">Cal Newport 的《深度工作》让我意识到，在分心时代保持专注本身就是一种竞争力。以下是我整理的核心观点和行动清单。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/phone-photography/" class="post-card">
+          <div class="post-card-cover cover-6"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">生活</span>
+              <span class="post-tag">设计</span>
+            </div>
+            <h2 class="post-card-title">极简摄影入门：用手机拍出好照片</h2>
+            <time class="post-card-date" datetime="2026-04-18">2026年4月18日</time>
+            <p class="post-card-excerpt">不需要昂贵器材，一部手机就足以开启摄影之旅。我总结了构图、光线、后期的基本原则，帮助你在日常生活中捕捉美好瞬间。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/rust-beginner/" class="post-card">
+          <div class="post-card-cover cover-7"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">技术</span>
+              <span class="post-tag">Rust</span>
+            </div>
+            <h2 class="post-card-title">Rust 初体验：系统编程语言的魅力</h2>
+            <time class="post-card-date" datetime="2026-04-10">2026年4月10日</time>
+            <p class="post-card-excerpt">终于鼓起勇气学习 Rust。所有权、生命周期、模式匹配——这些概念初看艰涩，理解后却让人拍案叫绝。一篇新手视角的入门分享。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/kyoto-food/" class="post-card">
+          <div class="post-card-cover cover-8"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">旅行</span>
+              <span class="post-tag">生活</span>
+            </div>
+            <h2 class="post-card-title">京都食记：抹茶与和果子的季节</h2>
+            <time class="post-card-date" datetime="2026-04-02">2026年4月2日</time>
+            <p class="post-card-excerpt">在京都的老铺里，一碗抹茶配一块和果子，便是一整个下午。记录京都茶食之旅中最打动我的五家小店和它们的故事。</p>
+          </div>
+        </a>
+      
+        <a href="./posts/open-source-life/" class="post-card">
+          <div class="post-card-cover cover-9"></div>
+          <div class="post-card-body">
+            <div class="post-card-tags">
+              <span class="post-tag">技术</span>
+              <span class="post-tag">开源</span>
+            </div>
+            <h2 class="post-card-title">开源项目维护者的日常与思考</h2>
+            <time class="post-card-date" datetime="2026-03-25">2026年3月25日</time>
+            <p class="post-card-excerpt">维护一个千人使用的开源项目是怎样的体验？从 Issue 管理到社区运营，我分享了两年开源维护的酸甜苦辣与真诚反思。</p>
+          </div>
+        </a>
+      </section>
+
+      <div class="no-results" id="noResults" hidden>
+        <p>没有找到相关文章 😔</p>
+      </div>
+
+      <script>window.__POSTS__ = [{"title":"如何用 CSS Grid 构建现代网页布局","date":"2026-05-28","tags":["技术","CSS"],"excerpt":"CSS Grid 已经成为现代网页布局的基石。本文深入探讨 Grid 的核心概念、实战技巧，以及与传统布局方案的对比，帮你彻底掌握这一强大工具。","url":"./posts/css-grid-guide/","coverClass":"cover-1"},{"title":"设计系统从零到一：我的踩坑与收获","date":"2026-05-20","tags":["设计","技术"],"excerpt":"为团队构建设计系统是一次充满挑战的旅程。这篇文章记录了我在设计令牌、组件库搭建、文档化方面的实践经验与思考。","url":"./posts/design-system/","coverClass":"cover-2"},{"title":"丽江慢行：在古城里找回生活的节奏","date":"2026-05-12","tags":["旅行","生活"],"excerpt":"离开屏幕，走进丽江古城的石板巷陌。一周的慢旅行让我重新审视工作与生活的平衡，也拍下了许多难忘的瞬间。","url":"./posts/lijiang-travel/","coverClass":"cover-3"},{"title":"JavaScript 异步编程的进化史","date":"2026-05-05","tags":["技术","JavaScript"],"excerpt":"从回调地狱到 Promise，再到 async/await——JavaScript 异步编程范式经历了深刻演变。本文梳理这一进化历程，并给出最佳实践建议。","url":"./posts/javascript-async/","coverClass":"cover-4"},{"title":"《深度工作》读书笔记：专注力才是稀缺资源","date":"2026-04-26","tags":["读书笔记","生活"],"excerpt":"Cal Newport 的《深度工作》让我意识到，在分心时代保持专注本身就是一种竞争力。以下是我整理的核心观点和行动清单。","url":"./posts/deep-work/","coverClass":"cover-5"},{"title":"极简摄影入门：用手机拍出好照片","date":"2026-04-18","tags":["生活","设计"],"excerpt":"不需要昂贵器材，一部手机就足以开启摄影之旅。我总结了构图、光线、后期的基本原则，帮助你在日常生活中捕捉美好瞬间。","url":"./posts/phone-photography/","coverClass":"cover-6"},{"title":"Rust 初体验：系统编程语言的魅力","date":"2026-04-10","tags":["技术","Rust"],"excerpt":"终于鼓起勇气学习 Rust。所有权、生命周期、模式匹配——这些概念初看艰涩，理解后却让人拍案叫绝。一篇新手视角的入门分享。","url":"./posts/rust-beginner/","coverClass":"cover-7"},{"title":"京都食记：抹茶与和果子的季节","date":"2026-04-02","tags":["旅行","生活"],"excerpt":"在京都的老铺里，一碗抹茶配一块和果子，便是一整个下午。记录京都茶食之旅中最打动我的五家小店和它们的故事。","url":"./posts/kyoto-food/","coverClass":"cover-8"},{"title":"开源项目维护者的日常与思考","date":"2026-03-25","tags":["技术","开源"],"excerpt":"维护一个千人使用的开源项目是怎样的体验？从 Issue 管理到社区运营，我分享了两年开源维护的酸甜苦辣与真诚反思。","url":"./posts/open-source-life/","coverClass":"cover-9"}];</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-text">&copy; 2026 My Blog. Made with ❤️</p>
+      <div class="footer-social">
+        <a href="https://github.com/yourname" class="social-link">GitHub</a>
+        <a href="https://twitter.com/yourname" class="social-link">Twitter</a>
+        <a href="#" class="social-link">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>

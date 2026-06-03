@@ -1,0 +1,11 @@
+{
+  "siteName": "My Blog",
+  "author": "John Doe",
+  "authorBio": "热爱技术与写作的全栈开发者。在这里记录思考、分享知识、探索生活。",
+  "avatarInitials": "JD",
+  "social": {
+    "github": "https://github.com/yourname",
+    "twitter": "https://twitter.com/yourname",
+    "email": "mailto:you@example.com"
+  }
+}

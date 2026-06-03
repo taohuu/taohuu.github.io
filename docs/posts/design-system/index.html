@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设计系统从零到一：我的踩坑与收获 — My Blog</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-theme="light">
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="../../" class="logo">My Blog</a>
+      <nav class="nav">
+        <a href="../../" class="nav-link">首页</a>
+        <a href="#" class="nav-link">关于</a>
+        <a href="#" class="nav-link">归档</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="icon icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <a href="../../" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        返回首页
+      </a>
+
+      <article class="article-header">
+        <div class="article-tags">
+          <span class="post-tag">设计</span>
+          <span class="post-tag">技术</span>
+        </div>
+        <h1 class="article-title">设计系统从零到一：我的踩坑与收获</h1>
+        <div class="article-meta">
+          <span>John Doe</span>
+          <time datetime="2026-05-20">2026年5月20日</time>
+        </div>
+      </article>
+
+      <div class="article-cover cover-2"></div>
+
+      <div class="article-body">
+        <p>为团队构建设计系统是一次充满挑战的旅程。从最初的概念验证到最终全团队采用，整个过程历时半年。这篇文章记录了我的踩坑经历和最终收获。</p>
+<h2>为什么需要设计系统？</h2>
+<p>当时团队面临几个痛点：</p>
+<ol>
+<li><strong>视觉不一致</strong>：同一个按钮在不同页面有 6 种样式</li>
+<li><strong>沟通成本高</strong>：设计师和开发者对&quot;16px 的间距&quot;有不同理解</li>
+<li><strong>重复造轮子</strong>：每个新项目都在重新写基础组件</li>
+</ol>
+<h2>第一步：设计令牌（Design Tokens）</h2>
+<p>设计令牌是整个系统的基石。我们把所有设计决策编码为可复用的变量。</p>
+<pre><code class="language-css">:root {
+  --color-primary: #4a90d9;
+  --color-text: #1a1a1a;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --font-size-body: 1rem;
+}
+</code></pre>
+<p>关键原则：<strong>语义化命名 &gt; 值命名</strong>。用 <code>--color-text</code> 而不是 <code>--color-gray-900</code>，这样换主题时只需改值。</p>
+<h2>第二步：组件库</h2>
+<p>从&quot;最小可行组件集&quot;开始，而不是试图覆盖所有场景：</p>
+<ul>
+<li>Button（按钮）</li>
+<li>Input（输入框）</li>
+<li>Card（卡片）</li>
+<li>Typography（排版）</li>
+<li>Icon（图标）</li>
+</ul>
+<p>我们选择了 <strong>组件驱动开发</strong> 的方式——每个组件都在隔离环境中开发和测试。</p>
+<h2>最大的三个坑</h2>
+<h3>坑一：过早抽象</h3>
+<p>一开始我试图设计一个&quot;完美&quot;的 Button 组件，支持 47 种变体。结果代码复杂、难以维护。</p>
+<blockquote>
+<p><strong>教训：先具体，后抽象。</strong> 出现第三次重复代码时再考虑抽象。</p>
+</blockquote>
+<h3>坑二：忽略可访问性</h3>
+<p>最初的组件颜色对比度不足，键盘导航也有问题。后来我们引入了自动化 a11y 测试。</p>
+<h3>坑三：文档没人看</h3>
+<p>花了两周写文档，结果没人读。后来改为<strong>活文档</strong>——每个组件旁边都有可交互的示例，这才是有效的文档。</p>
+<h2>收获</h2>
+<p>6 个月后，团队的交付速度提升了约 40%，视觉一致性显著改善。但最大的收获是：<strong>设计系统不只是组件和代码，它是设计师和开发者之间的共同语言。</strong></p>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-text">&copy; 2026 My Blog. Made with ❤️</p>
+      <div class="footer-social">
+        <a href="https://github.com/yourname" class="social-link">GitHub</a>
+        <a href="https://twitter.com/yourname" class="social-link">Twitter</a>
+        <a href="#" class="social-link">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

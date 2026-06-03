@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何用 CSS Grid 构建现代网页布局 — My Blog</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-theme="light">
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="../../" class="logo">My Blog</a>
+      <nav class="nav">
+        <a href="../../" class="nav-link">首页</a>
+        <a href="#" class="nav-link">关于</a>
+        <a href="#" class="nav-link">归档</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="icon icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <a href="../../" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        返回首页
+      </a>
+
+      <article class="article-header">
+        <div class="article-tags">
+          <span class="post-tag">技术</span>
+          <span class="post-tag">CSS</span>
+        </div>
+        <h1 class="article-title">如何用 CSS Grid 构建现代网页布局</h1>
+        <div class="article-meta">
+          <span>John Doe</span>
+          <time datetime="2026-05-28">2026年5月28日</time>
+        </div>
+      </article>
+
+      <div class="article-cover cover-1"></div>
+
+      <div class="article-body">
+        <p>CSS Grid 已经成为现代网页布局的基石。相比 Flexbox 的一维布局，Grid 提供了真正的二维布局能力，让我们可以同时控制行和列。</p>
+<h2>为什么选择 Grid？</h2>
+<p>在 Grid 出现之前，我们使用浮动、定位、inline-block 甚至表格来布局。Flexbox 解决了一维布局问题，但复杂的页面布局仍然需要嵌套多层 flex 容器。</p>
+<p>Grid 的优势在于：</p>
+<ul>
+<li><strong>二维控制</strong>：同时定义行和列，不再需要嵌套</li>
+<li><strong>间距管理</strong>：<code>gap</code> 属性统一管理行列间距</li>
+<li><strong>区域命名</strong>：通过 <code>grid-template-areas</code> 给网格区域命名</li>
+<li><strong>响应式友好</strong>：配合 <code>auto-fit</code>/<code>auto-fill</code> 轻松实现自适应</li>
+</ul>
+<h2>核心概念</h2>
+<h3>网格容器与网格项</h3>
+<pre><code class="language-css">.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 24px;
+}
+</code></pre>
+<p>设置 <code>display: grid</code> 后，直接子元素自动成为网格项。</p>
+<h3>fr 单位的妙用</h3>
+<p><code>fr</code> 是 Grid 独有的弹性单位，代表&quot;一份可用空间&quot;。例如 <code>1fr 2fr 1fr</code> 表示三列宽度比例为 1:2:1。</p>
+<pre><code class="language-css">.grid {
+  grid-template-columns: 200px 1fr 1fr;
+  /* 第一列固定 200px，剩余空间由后两列平分 */
+}
+</code></pre>
+<h3>自动填充的神奇之处</h3>
+<p>最实用的 Grid 技巧之一——无需媒体查询即可实现响应式卡片布局：</p>
+<pre><code class="language-css">.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+</code></pre>
+<p>当容器宽度变化时，列数自动调整，卡片最小宽度 320px，多余空间均分。</p>
+<h2>实战：博客首页布局</h2>
+<p>用 Grid 实现一个典型的博客布局只需要几行代码：</p>
+<pre><code class="language-css">.blog-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    &quot;header header&quot;
+    &quot;main   sidebar&quot;
+    &quot;footer footer&quot;;
+  gap: 24px;
+  min-height: 100vh;
+}
+</code></pre>
+<blockquote>
+<p>Grid 的强大之处在于：复杂的布局不需要复杂的代码。只要思路清晰，Grid 就能帮你干净地实现。</p>
+</blockquote>
+<h2>Grid vs Flexbox：何时使用哪个？</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体页面布局</td>
+<td>Grid</td>
+</tr>
+<tr>
+<td>组件内部布局（导航栏、按钮组）</td>
+<td>Flexbox</td>
+</tr>
+<tr>
+<td>二维复杂布局</td>
+<td>Grid</td>
+</tr>
+<tr>
+<td>一维列表排列</td>
+<td>Flexbox</td>
+</tr>
+</tbody></table>
+<p><strong>最佳实践：两者结合使用。</strong> 页面骨架用 Grid，组件内部用 Flexbox。</p>
+<h2>小结</h2>
+<p>Grid 不是要取代 Flexbox，两者各有所长。掌握 Grid 后，你会发现之前需要各种 hack 的布局变得轻松优雅。如果你还在用浮动布局，是时候拥抱 Grid 了。</p>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-text">&copy; 2026 My Blog. Made with ❤️</p>
+      <div class="footer-social">
+        <a href="https://github.com/yourname" class="social-link">GitHub</a>
+        <a href="https://twitter.com/yourname" class="social-link">Twitter</a>
+        <a href="#" class="social-link">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

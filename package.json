@@ -1,0 +1,14 @@
+{
+  "name": "my-blog",
+  "version": "1.0.0",
+  "description": "极简个人博客 — Markdown 写作，一键发布到 GitHub Pages",
+  "private": true,
+  "scripts": {
+    "new": "node scripts/new.js",
+    "build": "node scripts/build.js",
+    "publish": "node scripts/build.js && git add docs/ && git commit -m \"📝 Publish blog\" && git push"
+  },
+  "dependencies": {
+    "marked": "^15.0.7"
+  }
+}

@@ -1,0 +1,21 @@
+      <a href="{{HOME_URL}}" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        返回首页
+      </a>
+
+      <article class="article-header">
+        <div class="article-tags">
+          {{POST_TAGS}}
+        </div>
+        <h1 class="article-title">{{POST_TITLE}}</h1>
+        <div class="article-meta">
+          <span>{{AUTHOR}}</span>
+          <time datetime="{{POST_DATE}}">{{POST_DATE_FORMATTED}}</time>
+        </div>
+      </article>
+
+      <div class="article-cover {{COVER_CLASS}}"></div>
+
+      <div class="article-body">
+        {{POST_CONTENT}}
+      </div>
