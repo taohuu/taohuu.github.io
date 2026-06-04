@@ -56,7 +56,59 @@
       <div class="article-cover cover-1"></div>
 
       <div class="article-body">
-        <p><strong>测试</strong></p>
+        <h1>同轴线特性阻抗公式完整推导</h1>
+<h2>一、已知同轴线单位长度分布参数</h2>
+<p>无耗同轴线，单位长度电感、电容表达式：
+$
+\begin{cases}
+\displaystyle L = \frac{\mu}{2\pi}\ln\frac{b}{a} \quad (\mathrm{H/m}) \[6pt]
+\displaystyle C = \frac{2\pi\varepsilon}{\ln\frac{b}{a}} \quad (\mathrm{F/m})
+\end{cases}
+$</p>
+<blockquote>
+<p>符号说明：
+$a$：同轴线内导体半径；$b$：外导体内径；$\mu、\varepsilon$ 分别为填充介质磁导率、介电常数。</p>
+</blockquote>
+<h2>二、特性阻抗基础定义</h2>
+<p>传输线特性阻抗通用定义：
+$
+Z_c = \sqrt{\frac{L}{C}}
+$</p>
+<p>将 $L、C$ 代入原式化简：
+$
+\begin{align*}
+Z_c &amp;= \sqrt{\frac{\displaystyle \frac{\mu}{2\pi}\ln\frac{b}{a}}{\displaystyle \frac{2\pi\varepsilon}{\ln\frac{b}{a}}}} \[6pt]
+&amp;= \sqrt{\frac{\mu}{4\pi^2\varepsilon} \cdot \left(\ln\frac{b}{a}\right)^2} \[6pt]
+&amp;= \frac{1}{2\pi}\sqrt{\frac{\mu}{\varepsilon}} \cdot \ln\frac{b}{a}
+\end{align*}
+$</p>
+<h2>三、工程介质近似处理</h2>
+<p>微波同轴线填充介质（空气、PTFE、PE等绝缘介质）<strong>均为非铁磁材料</strong>：</p>
+<ol>
+<li>磁导率：$\mu \approx \mu_0$（$\mu_r\approx1$，$\mu=\mu_r\mu_0\approx\mu_0$）；</li>
+<li>介电常数：$\varepsilon=\varepsilon_r \varepsilon_0$（绝缘介质相对介电常数 $\varepsilon_r \gg1$，不可忽略）。</li>
+</ol>
+<p>代入上式：
+$
+Z_c=\frac{1}{2\pi}\sqrt{\frac{\mu_0}{\varepsilon_0}}\cdot \frac{1}{\sqrt{\varepsilon_r}} \ln\frac{b}{a}
+$</p>
+<h2>四、代入真空波阻抗常量</h2>
+<p>真空本征波阻抗：
+$
+\eta_0=\sqrt{\frac{\mu_0}{\varepsilon_0}} \approx 120\pi \ \Omega
+$</p>
+<p>最终化简得到工程常用公式：
+$
+\begin{align*}
+Z_c &amp;= \frac{1}{2\pi}\cdot 120\pi \cdot \frac{1}{\sqrt{\varepsilon_r}}\ln\frac{b}{a} \[6pt]
+&amp;= \boldsymbol{\frac{60}{\sqrt{\varepsilon_r}}\ln\frac{b}{a}\quad (\Omega)}
+\end{align*}
+$</p>
+<h2>补充特例：空气填充同轴线</h2>
+<p>介质为空气时 $\varepsilon_r\approx1$，公式简化为：
+$
+\boldsymbol{Z_c=60\ln\frac{b}{a}\ \Omega}
+$</p>
 
       </div>
 
