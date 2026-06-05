@@ -6,9 +6,11 @@
   "scripts": {
     "new": "node scripts/new.js",
     "build": "node scripts/build.js",
+    "serve": "node scripts/serve.js",
     "publish": "node scripts/build.js && git add docs/ && git commit -m \"📝 Publish blog\" && git push"
   },
   "dependencies": {
+    "katex": "^0.17.0",
     "marked": "^15.0.7"
   }
 }

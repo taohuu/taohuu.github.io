@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>博客编辑器</title>
+  <link rel="stylesheet" href="/katex.min.css">
+  <style>
+    :root{--bg:#f8f9fa;--surface:#fff;--text:#1a1a1a;--text-secondary:#6b7280;--border:#e5e7eb;--accent:#4a90d9;--accent-hover:#3a7bc8;--danger:#ef4444;--success:#10b981;--radius:8px}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column}
+    .toolbar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+    .toolbar-title{font-weight:700;font-size:1rem;margin-right:auto}
+    .btn{padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:.85rem;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;white-space:nowrap}
+    .btn:hover{background:#f3f4f6}
+    .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn-primary:hover{background:var(--accent-hover)}
+    .btn-success{background:var(--success);color:#fff;border-color:var(--success)}
+    .form-row{display:flex;gap:12px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap}
+    .form-group{display:flex;flex-direction:column;gap:4px}
+    .form-group label{font-size:.75rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px}
+    .form-group input{padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .15s}
+    .form-group input:focus{border-color:var(--accent)}
+    .form-title{flex:2;min-width:200px}
+    .form-tags{flex:1;min-width:150px}
+    .form-date{width:130px;flex-shrink:0}
+    .form-excerpt{flex:2;min-width:200px}
+    .main-area{display:flex;flex:1;overflow:hidden}
+    .sidebar{width:200px;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;display:flex;flex-direction:column}
+    .sidebar-header{padding:12px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-secondary);border-bottom:1px solid var(--border)}
+    .sidebar-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #f3f4f6;transition:background .1s}
+    .sidebar-item:hover{background:#f0f4ff}
+    .sidebar-item.active{background:#e8f0fe;border-left:3px solid var(--accent)}
+    .sidebar-item-title{font-size:.85rem;font-weight:600;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sidebar-item-date{font-size:.7rem;color:var(--text-secondary)}
+    .editor-pane{flex:1;display:flex;flex-direction:column;min-width:0}
+    .editor-toolbar{display:flex;gap:4px;padding:6px 12px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+    .md-btn{padding:4px 8px;border:1px solid transparent;border-radius:4px;background:transparent;color:var(--text-secondary);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .1s;font-family:inherit}
+    .md-btn:hover{background:#f3f4f6;color:var(--text)}
+    textarea{flex:1;border:none;padding:16px;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.9rem;line-height:1.7;resize:none;outline:none;background:var(--surface);color:var(--text)}
+    .preview-pane{flex:1;overflow-y:auto;padding:16px 24px;background:#fff;border-left:1px solid var(--border);font-size:.95rem;line-height:1.8;color:#1a1a1a}
+    .preview-pane h2{font-size:1.4rem;margin:24px 0 12px}
+    .preview-pane h3{font-size:1.15rem;margin:20px 0 8px}
+    .preview-pane p{margin-bottom:12px}
+    .preview-pane code{background:#f3f4f6;padding:2px 6px;border-radius:4px;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.85em}
+    .preview-pane pre{background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:8px;overflow-x:auto;margin:16px 0;font-size:.85rem;line-height:1.6}
+    .preview-pane pre code{background:none;padding:0;color:inherit}
+    .preview-pane blockquote{border-left:3px solid var(--accent);padding:4px 0 4px 16px;margin:16px 0;color:#6b7280;font-style:italic}
+    .preview-pane ul,.preview-pane ol{margin:12px 0;padding-left:24px}
+    .preview-pane li{margin-bottom:4px}
+    .preview-pane img{max-width:100%;border-radius:8px}
+    .preview-pane a{color:var(--accent)}
+    .split-view{display:flex;flex:1;overflow:hidden}
+    .toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:8px;color:#fff;font-weight:600;font-size:.9rem;animation:slideIn .3s ease;z-index:1000;max-width:400px}
+    .toast-success{background:var(--success)}
+    .toast-error{background:var(--danger)}
+    @keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+    @media(max-width:900px){.sidebar{display:none}.split-view{flex-direction:column}.preview-pane{border-left:none;border-top:1px solid var(--border)}textarea{min-height:300px}.preview-pane{min-height:300px}}
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <span class="toolbar-title">📝 博客编辑器</span>
+    <button class="btn" onclick="newPost()">➕ 新文章</button>
+    <button class="btn btn-primary" onclick="savePost()">💾 保存</button>
+    <button class="btn" onclick="buildSite()">🔨 构建</button>
+    <button class="btn btn-success" onclick="publishSite()">🚀 发布</button>
+    <button class="btn" onclick="deletePost()" style="color:var(--danger);" title="删除当前文章">🗑️</button>
+    <span id="status" style="font-size:.8rem;color:var(--text-secondary);margin-left:8px"></span>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group form-title"><label>标题</label><input id="titleInput" placeholder="文章标题"></div>
+    <div class="form-group form-tags"><label>标签 (逗号分隔)</label><input id="tagsInput" placeholder="技术, CSS"></div>
+    <div class="form-group form-date"><label>日期</label><input id="dateInput" value="{{TODAY}}"></div>
+    <div class="form-group form-excerpt"><label>摘要</label><input id="excerptInput" placeholder="显示在首页卡片上的摘要"></div>
+  </div>
+
+  <div class="main-area">
+    <div class="sidebar"><div class="sidebar-header">📄 文章列表</div><div id="postList">加载中...</div></div>
+    <div class="split-view">
+      <div class="editor-pane">
+        <div class="editor-toolbar">
+          <button class="md-btn" onclick="wrap('**','**')" title="粗体"><b>B</b></button>
+          <button class="md-btn" onclick="wrap('*','*')" title="斜体"><i>I</i></button>
+          <button class="md-btn" onclick="wrap('## ','','')" title="标题">H2</button>
+          <button class="md-btn" onclick="wrap('### ','','')" title="小标题">H3</button>
+          <button class="md-btn" onclick="wrap('\`','\`')" title="代码">&lt;/&gt;</button>
+          <button class="md-btn" onclick="wrap('\`\`\`\n','\n\`\`\`')" title="代码块">{ }</button>
+          <button class="md-btn" onclick="wrap('> ','','')" title="引用">&ldquo;</button>
+          <button class="md-btn" onclick="wrap('[','](url)')" title="链接">🔗</button>
+          <button class="md-btn" onclick="wrap('- ','','')" title="列表">•</button>
+          <button class="md-btn" onclick="wrap('---\n','','')" title="分隔线">—</button>
+          <span style="width:1px;background:var(--border);margin:4px 6px"></span>
+          <button class="md-btn" onclick="pickFile('image')" title="插入图片">📷</button>
+          <button class="md-btn" onclick="pickFile('video')" title="插入视频">📹</button>
+          <button class="md-btn" onclick="pickFile('file')" title="插入附件">📎</button>
+        </div>
+        <textarea id="editor" placeholder="在这里写 Markdown...&#10;&#10;## 二级标题&#10;&#10;正文内容...&#10;&#10;```javascript&#10;console.log('代码块');&#10;```&#10;&#10;> 引用文字&#10;&#10;- 列表项&#10;&#10;$$&#10;E = mc^2&#10;$$"></textarea>
+        <input type="file" id="fileInput" hidden>
+      </div>
+      <div class="preview-pane" id="preview"><p style="color:var(--text-secondary)">预览区域，输入 Markdown 后自动更新...</p></div>
+    </div>
+  </div>
+
+  <script src="/marked.js"></script>
+  <script src="/katex.min.js"></script>
+  <script>
+    var currentFile = null;
+    var timer = 0;
+    var NL = '\n';
+
+    function toast(msg, type) {
+      var el = document.createElement('div');
+      el.className = 'toast toast-' + (type || 'success');
+      el.textContent = msg;
+      document.body.appendChild(el);
+      setTimeout(function(){ el.remove(); }, 3000);
+    }
+
+    function setStatus(msg) {
+      document.getElementById('status').textContent = msg;
+      setTimeout(function(){ document.getElementById('status').textContent = ''; }, 5000);
+    }
+
+    function wrap(before, after, unused) {
+      var ta = document.getElementById('editor');
+      var s = ta.selectionStart, e = ta.selectionEnd;
+      var t = ta.value;
+      var sel = t.substring(s, e);
+      before = before.replace(/\\n/g, NL);
+      after = after.replace(/\\n/g, NL);
+      ta.value = t.substring(0, s) + before + sel + after + t.substring(e);
+      ta.focus();
+      var pos = s + before.length;
+      ta.setSelectionRange(pos, pos + sel.length);
+      updatePreview();
+    }
+
+    function updatePreview() {
+      var md = document.getElementById('editor').value;
+      var blocks = [];
+      var inlines = [];
+
+      // 保护 $$...$$ 块
+      md = md.replace(/\$\$([\s\S]*?)\$\$/g, function(m) {
+        blocks.push(m);
+        return '\x00MBLK' + (blocks.length - 1) + '\x00';
+      });
+
+      // 保护 $...$ 行内
+      md = md.replace(/(?<!\$)\$(?!\$)([^$\n]+?)(?<!\$)\$(?!\$)/g, function(m) {
+        inlines.push(m);
+        return '\x00MINL' + (inlines.length - 1) + '\x00';
+      });
+
+      // marked 解析
+      var html = marked.parse(md);
+
+      // 还原块级公式
+      for (var i = 0; i < blocks.length; i++) {
+        html = html.split('\x00MBLK' + i + '\x00').join(blocks[i]);
+      }
+      // 还原行内公式
+      for (var i = 0; i < inlines.length; i++) {
+        html = html.split('\x00MINL' + i + '\x00').join(inlines[i]);
+      }
+
+      // KaTeX 渲染块级
+      html = html.replace(/\$\$([\s\S]*?)\$\$/g, function(m, math) {
+        try { return katex.renderToString(math.trim(), { displayMode: true, throwOnError: false }); }
+        catch(e) { return m; }
+      });
+
+      // KaTeX 渲染行内
+      html = html.replace(/(?<!\$)\$(?!\$)([^$\n]+?)(?<!\$)\$(?!\$)/g, function(m, math) {
+        try { return katex.renderToString(math.trim(), { displayMode: false, throwOnError: false }); }
+        catch(e) { return m; }
+      });
+
+      document.getElementById('preview').innerHTML = html;
+    }
+
+    document.getElementById('editor').addEventListener('input', function() {
+      clearTimeout(timer);
+      timer = setTimeout(updatePreview, 200);
+    });
+
+    function esc(str) {
+      var d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    async function loadPostList() {
+      try {
+        var res = await fetch('/api/posts');
+        var posts = await res.json();
+        var list = document.getElementById('postList');
+        if (!posts.length) { list.innerHTML = '<div style="padding:12px;color:var(--text-secondary);font-size:.85rem">还没有文章</div>'; return; }
+        var h = '';
+        for (var i = 0; i < posts.length; i++) {
+          var p = posts[i];
+          h += '<div class="sidebar-item" data-file="' + p.fileName + '">' +
+               '<div class="sidebar-item-title">' + esc(p.title) + '</div>' +
+               '<div class="sidebar-item-date">' + p.date + '</div></div>';
+        }
+        list.innerHTML = h;
+        list.querySelectorAll('.sidebar-item').forEach(function(el) {
+          el.addEventListener('click', function() { loadPost(this.dataset.file); });
+        });
+      } catch(e) { document.getElementById('postList').innerHTML = '<div style="padding:12px;color:var(--danger)">加载失败</div>'; }
+    }
+
+    async function loadPost(fileName) {
+      try {
+        var res = await fetch('/api/posts/' + fileName);
+        var post = await res.json();
+        if (post.error) { toast(post.error, 'error'); return; }
+        document.getElementById('titleInput').value = post.title;
+        document.getElementById('tagsInput').value = Array.isArray(post.tags) ? post.tags.join(', ') : '';
+        document.getElementById('dateInput').value = post.date;
+        document.getElementById('excerptInput').value = post.excerpt || '';
+        document.getElementById('editor').value = post.body;
+        currentFile = post.fileName;
+        document.querySelectorAll('.sidebar-item').forEach(function(el){ el.classList.remove('active'); });
+        var item = document.querySelector('.sidebar-item[data-file="' + CSS.escape(fileName) + '"]');
+        if (item) item.classList.add('active');
+        updatePreview();
+        setStatus('已加载: ' + post.title);
+      } catch(e) { toast('加载失败', 'error'); }
+    }
+
+    function newPost() {
+      document.getElementById('titleInput').value = '';
+      document.getElementById('tagsInput').value = '';
+      document.getElementById('dateInput').value = '{{TODAY}}';
+      document.getElementById('excerptInput').value = '';
+      document.getElementById('editor').value = '';
+      currentFile = null;
+      document.querySelectorAll('.sidebar-item').forEach(function(el){ el.classList.remove('active'); });
+      document.getElementById('preview').innerHTML = '<p style="color:var(--text-secondary)">预览区域，输入 Markdown 后自动更新...</p>';
+      setStatus('新文章就绪');
+    }
+
+    async function savePost() {
+      var title = document.getElementById('titleInput').value.trim();
+      if (!title) { toast('请输入标题', 'error'); return; }
+      var tags = document.getElementById('tagsInput').value.split(',').map(function(t){ return t.trim(); }).filter(function(t){ return t; });
+      try {
+        var res = await fetch('/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: title, date: document.getElementById('dateInput').value,
+            tags: tags, excerpt: document.getElementById('excerptInput').value.trim(),
+            body: document.getElementById('editor').value, originalFileName: currentFile
+          })
+        });
+        var data = await res.json();
+        if (data.ok) { currentFile = data.fileName; toast('✅ 已保存: ' + data.fileName); setStatus('已保存'); loadPostList(); }
+        else { toast(data.error || '保存失败', 'error'); }
+      } catch(e) { toast('保存失败', 'error'); }
+    }
+
+    async function buildSite() {
+      setStatus('构建中...');
+      try {
+        var res = await fetch('/api/build', { method: 'POST' });
+        var data = await res.json();
+        if (data.ok) { toast('✅ 构建成功！'); setStatus('构建完成'); }
+        else { toast('构建失败', 'error'); }
+      } catch(e) { toast('构建失败', 'error'); }
+    }
+
+    async function publishSite() {
+      if (!confirm('确定要构建并发布到 GitHub？')) return;
+      setStatus('发布中...');
+      try {
+        var res = await fetch('/api/publish', { method: 'POST' });
+        var data = await res.json();
+        if (data.ok) { toast('🚀 发布成功！'); setStatus('发布完成'); }
+        else { toast('发布失败: ' + (data.output || '').slice(0, 200), 'error'); setStatus('发布失败'); }
+      } catch(e) { toast('发布失败: ' + e.message, 'error'); }
+    }
+
+    async function deletePost() {
+      if (!currentFile) { toast('请先加载一篇文章', 'error'); return; }
+      if (!confirm('确定要删除 "' + document.getElementById('titleInput').value + '"？此操作不可恢复。')) return;
+      try {
+        var res = await fetch('/api/posts/' + currentFile, { method: 'DELETE' });
+        var data = await res.json();
+        if (data.ok) {
+          toast('✅ 已删除: ' + data.fileName);
+          setStatus('已删除');
+          newPost();
+          loadPostList();
+        } else { toast(data.error || '删除失败', 'error'); }
+      } catch(e) { toast('删除失败', 'error'); }
+    }
+
+    var uploadType = 'image';
+
+    function pickFile(type) {
+      uploadType = type;
+      var inp = document.getElementById('fileInput');
+      if (type === 'image') inp.accept = 'image/*';
+      else if (type === 'video') inp.accept = 'video/*';
+      else inp.accept = '.pdf,.zip,.doc,.docx,.txt,.csv';
+      inp.onchange = function() { if (inp.files[0]) doUpload(inp.files[0]); };
+      inp.click();
+    }
+
+    function doUpload(file) {
+      setStatus('上传中...');
+      var reader = new FileReader();
+      reader.onload = function() {
+        var base64 = reader.result;
+        fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: file.name, data: base64, type: file.type })
+        }).then(function(r) { return r.json(); })
+          .then(function(data) {
+            if (data.ok) {
+              // 插入 markdown
+              var ta = document.getElementById('editor');
+              var s = ta.selectionStart;
+              var t = ta.value;
+              var insert = '';
+              if (uploadType === 'image') insert = '![' + data.name + '](/' + data.path + ')\n';
+              else if (uploadType === 'video') insert = '<video src="/' + data.path + '" controls></video>\n';
+              else insert = '[' + data.name + '](/' + data.path + ')\n';
+              ta.value = t.substring(0, s) + insert + t.substring(s);
+              ta.focus();
+              ta.selectionStart = ta.selectionEnd = s + insert.length;
+              updatePreview();
+              toast('✅ 已上传: ' + data.name);
+              setStatus('上传完成');
+            } else { toast('上传失败', 'error'); }
+          }).catch(function() { toast('上传失败', 'error'); });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); savePost(); }
+    });
+
+    loadPostList();
+  </script>
+</body>
+</html>

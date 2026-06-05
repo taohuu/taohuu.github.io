@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
+const katex = require('katex');
 
 // 配置 marked
 marked.setOptions({
@@ -43,10 +44,71 @@ function copyFile(src, dest) {
   fs.copyFileSync(src, dest);
 }
 
+/** 递归复制目录 */
+function copyDir(src, dest) {
+  if (!fs.existsSync(src)) return;
+  if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
+  fs.readdirSync(src, { withFileTypes: true }).forEach(entry => {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) copyDir(srcPath, destPath);
+    else copyFile(srcPath, destPath);
+  });
+}
+
 function formatDate(dateStr) {
   const date = new Date(dateStr);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('zh-CN', options);
+}
+
+/** 在 Markdown 解析前保护数学公式，防止 marked 破坏 LaTeX 语法 */
+function protectMath(md) {
+  const blocks = [];
+  const inlines = [];
+  // 先保护 $$...$$ 块级公式
+  md = md.replace(/\$\$([\s\S]*?)\$\$/g, (match) => {
+    blocks.push(match);
+    return `\x00MBLK${blocks.length - 1}\x00`;
+  });
+  // 再保护 $...$ 行内公式
+  md = md.replace(/(?<!\$)\$(?!\$)([^$\n]+?)(?<!\$)\$(?!\$)/g, (match) => {
+    inlines.push(match);
+    return `\x00MINL${inlines.length - 1}\x00`;
+  });
+  return { protectedMd: md, blocks, inlines };
+}
+
+/** 将保护过的公式占位符还原 */
+function restoreMath(html, blocks, inlines) {
+  blocks.forEach((math, i) => {
+    html = html.split(`\x00MBLK${i}\x00`).join(math);
+  });
+  inlines.forEach((math, i) => {
+    html = html.split(`\x00MINL${i}\x00`).join(math);
+  });
+  return html;
+}
+
+/** 将 HTML 中的 LaTeX 公式渲染为 KaTeX HTML */
+function renderMath(html) {
+  // 先处理 $$...$$ 块级公式
+  html = html.replace(/\$\$([\s\S]*?)\$\$/g, (match, math) => {
+    try {
+      return katex.renderToString(math.trim(), { displayMode: true, throwOnError: false });
+    } catch (e) {
+      return match;
+    }
+  });
+  // 再处理 $...$ 行内公式（不匹配 $$）
+  html = html.replace(/(?<!\$)\$(?!\$)(.*?)(?<!\$)\$(?!\$)/g, (match, math) => {
+    try {
+      return katex.renderToString(math.trim(), { displayMode: false, throwOnError: false });
+    } catch (e) {
+      return match;
+    }
+  });
+  return html;
 }
 
 /** 将中文标题转换为 URL 友好的 slug */
@@ -98,7 +160,10 @@ function parsePost(filePath) {
   });
 
   const markdownBody = fmMatch[2].trim();
-  const htmlBody = marked.parse(markdownBody);
+  const { protectedMd, blocks, inlines } = protectMath(markdownBody);
+  const rawHtml = marked.parse(protectedMd);
+  const restoredHtml = restoreMath(rawHtml, blocks, inlines);
+  const htmlBody = renderMath(restoredHtml);
 
   // 从文件名提取 slug（去掉日期前缀）
   const fileName = path.basename(filePath, '.md');
@@ -134,6 +199,12 @@ function render(template, vars) {
 
 function build() {
   console.log('🔨 开始构建博客...\n');
+
+  // 清理旧的构建产物（避免已删除文章残留）
+  const docsPosts = path.join(DOCS, 'posts');
+  if (fs.existsSync(docsPosts)) {
+    fs.rmSync(docsPosts, { recursive: true });
+  }
 
   // 1. 读取站点配置
   const config = JSON.parse(readFile(ROOT, 'site.config.json'));
@@ -211,6 +282,7 @@ function build() {
   const homeHtml = render(baseTpl, {
     TITLE: config.siteName,
     CSS_PATH: './css/style.css',
+    KATEX_CSS: './css/katex.min.css',
     JS_PATH: './js/main.js',
     HOME_URL: './',
     HOME_ACTIVE: ' active',
@@ -244,6 +316,7 @@ function build() {
     const postHtml = render(baseTpl, {
       TITLE: `${post.title} — ${config.siteName}`,
       CSS_PATH: '../../css/style.css',
+      KATEX_CSS: '../../css/katex.min.css',
       JS_PATH: '../../js/main.js',
       HOME_URL: '../../',
       HOME_ACTIVE: '',
@@ -267,7 +340,32 @@ function build() {
     path.join(SRC, 'js', 'main.js'),
     path.join(DOCS, 'js', 'main.js')
   );
-  console.log('✅ CSS/JS 已复制');
+
+  // 复制 KaTeX CSS
+  copyFile(
+    path.join(ROOT, 'node_modules', 'katex', 'dist', 'katex.min.css'),
+    path.join(DOCS, 'css', 'katex.min.css')
+  );
+
+  // 复制 KaTeX 字体
+  const katexFontsSrc = path.join(ROOT, 'node_modules', 'katex', 'dist', 'fonts');
+  const katexFontsDest = path.join(DOCS, 'css', 'fonts');
+  if (!fs.existsSync(katexFontsDest)) {
+    fs.mkdirSync(katexFontsDest, { recursive: true });
+  }
+  fs.readdirSync(katexFontsSrc).forEach(f => {
+    copyFile(path.join(katexFontsSrc, f), path.join(katexFontsDest, f));
+  });
+
+  // 复制 assets（图片/视频/附件）
+  const assetsSrc = path.join(SRC, 'assets');
+  const assetsDest = path.join(DOCS, 'assets');
+  if (fs.existsSync(assetsSrc)) {
+    copyDir(assetsSrc, assetsDest);
+    console.log('✅ assets 已复制');
+  }
+
+  console.log('✅ CSS/JS/KaTeX 已复制');
 
   console.log(`\n🎉 构建完成！输出目录: ${DOCS}`);
   console.log('   用浏览器打开 docs/index.html 即可预览');
